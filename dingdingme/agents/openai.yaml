@@ -1,0 +1,3 @@
+interface:
+  display_name: "Ding Ding Me"
+  short_description: "Set up cross-platform Codex completion alerts"
