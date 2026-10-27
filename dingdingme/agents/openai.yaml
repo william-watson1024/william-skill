@@ -1,3 +1,3 @@
 interface:
   display_name: "Ding Ding Me"
-  short_description: "Set up cross-platform Codex completion alerts"
+  short_description: "Set up Codex alerts with VS Code SSH bell support"

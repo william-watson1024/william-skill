@@ -47,7 +47,7 @@ if {
   printf 'request = "POST"\n'
   printf 'header = "Authorization: Bearer %s"\n' "$token"
   printf 'max-time = 3\nfail\nsilent\nshow-error\n'
-} | curl --config - >/dev/null; then
+} | curl --noproxy '*' --config - >/dev/null; then
   printf '{}\n'
   exit 0
 fi

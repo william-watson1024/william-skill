@@ -1,5 +1,11 @@
 # Platform support
 
+## VS Code and SSH routing comes first
+
+Before registering a native hook, check whether Codex CLI is inside a VS Code terminal. For VS Code Remote SSH (including jump hosts), use [vscode-terminal.md](vscode-terminal.md): native Codex BEL notifications plus version-matched local VS Code settings. This route needs no listener, reverse forward, or Stop hook. It provides audio and an optional terminal indicator, not a Windows desktop popup.
+
+Use the SSH relay below only outside that route, or when the user explicitly wants desktop notifications/custom playback and accepts the listener setup.
+
 ## Windows
 
 `scripts/windows-notify.ps1` sends a Windows Toast with `Priority=High` and plays `assets/sounds/ring.mp3` through Windows MCI. It prefers the installed ChatGPT app identity and falls back to the registered Windows PowerShell identity. Toast priority is a Windows hint; notification settings, Do Not Disturb, and device state can still affect banners.
@@ -45,7 +51,7 @@ PORT=38473
 TOKEN=<64-hex-character-token>
 ```
 
-Set the remote config file permissions to `600`. Keep the Windows token file under the user's profile with user-only read access. The listener binds only to `127.0.0.1`; the remote forward also binds only to remote loopback. The client must reconnect after adding `RemoteForward`; the current SSH session does not gain a new forward automatically.
+Set the remote config file permissions to `600`. Keep the Windows token file under the user's profile with user-only read access. The listener binds only to `127.0.0.1`; the remote forward also binds only to remote loopback. The client must reconnect after adding `RemoteForward`; the current SSH session does not gain a new forward automatically. Reuse the user's actual SSH alias and `ProxyJump` configuration when a jump host is involved; do not assume direct access to the final host.
 
 If the SSH server disallows TCP forwarding, do not widen the listener to a public interface. Keep the terminal-bell fallback or ask the server administrator to enable an appropriate remote forward.
 
