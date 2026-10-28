@@ -1,0 +1,4 @@
+interface:
+  display_name: "初始化前后端项目"
+  short_description: "为全新空目录初始化前后端分离的项目结构、开发环境与本地项目约定"
+  default_prompt: "使用 $init-project 初始化一个前后端分离的新项目，先确认缺失的项目信息，只创建目录和开发环境，不生成应用代码。"
